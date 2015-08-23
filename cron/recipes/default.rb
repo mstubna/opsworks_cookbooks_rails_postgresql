@@ -9,6 +9,7 @@ node[:crontasks].each do |application, tasks|
       Chef::Log.debug("Skipping `crontasks` for task `#{task}` as we [#{node[:opsworks][:instance][:layers]}] are not part of required layers `#{props[:layers]}`")
       next
     end
+    Chef::Log.debug("Adding crontask `#{task}`")
 
     cron task.to_s do
       minute props[:minute].to_s if props[:minute]
